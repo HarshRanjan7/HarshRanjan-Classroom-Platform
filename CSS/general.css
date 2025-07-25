@@ -1,0 +1,63 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Premium Color Palette */
+:root {
+    --color-primary-dark: #1A2238; /* Deep Indigo for main backgrounds */
+    --color-secondary-dark: #2C394B; /* Slightly lighter deep blue for sections/accents */
+    --color-accent-gold: #FF6A3D; /* Vibrant orange/coral for highlights */
+    --color-text-light: #F8F8F8; /* Off-white for general text */
+    --color-text-dimmed: #B0B7C1; /* Soft grey for secondary text */
+    --color-button-bg-main: var(--color-accent-gold);
+    --color-button-text-main: var(--color-primary-dark);
+    --color-border-subtle: rgba(255, 255, 255, 0.1); /* Very subtle white for borders */
+    --color-gradient-start: #FF6A3D; /* Gradient start color */
+    --color-gradient-end: #FF0054; /* Gradient end color */
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'Lato', sans-serif; /* Changed to premium font */
+    padding-inline: 1rem; 
+    line-height: 1.5;
+    margin: 0 auto;
+    background-color: var(--color-primary-dark); /* Set base background from premium palette */
+    color: var(--color-text-light); /* Set base text color from premium palette */
+}
+
+/* Main */
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.2rem ;
+}
+
+.content-link{
+    font-size: 1.8rem;
+    font-family: 'Lato', sans-serif; /* Changed to premium font */
+    width: 28rem;
+    text-decoration: none;
+    background-color: var(--color-accent-gold); /* Changed color */
+    padding: 1.2rem 2.4rem;
+    color: var(--color-button-text-main); /* Changed color */
+
+    border-radius: 0.4rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Added transition */
+}
+
+.content-link:hover {
+    background-color: var(--color-secondary-dark); /* Hover effect */
+    color: var(--color-text-light); /* Hover effect */
+}

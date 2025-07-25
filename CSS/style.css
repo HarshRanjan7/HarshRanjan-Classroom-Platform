@@ -1,0 +1,553 @@
+/*********************************************************************/
+/* NAV BAR */
+/*********************************************************************/
+
+/* --- CSS variables for color palette (already present, ensure they are at the top) --- */
+:root {
+    --color-primary-dark: #1A2238; /* Deep Indigo for main backgrounds */
+    --color-secondary-dark: #2C394B; /* Slightly lighter deep blue for sections/accents */
+    --color-accent-gold: #FF6A3D; /* Vibrant orange/coral for highlights */
+    --color-text-light: #F8F8F8; /* Off-white for general text */
+    --color-text-dimmed: #B0B7C1; /* Soft grey for secondary text */
+    --color-button-bg-main: var(--color-accent-gold);
+    --color-button-text-main: var(--color-primary-dark);
+    --color-border-subtle: rgba(255, 255, 255, 0.1); /* Very subtle white for borders */
+    --color-gradient-start: #FF6A3D; /* Gradient start color */
+    --color-gradient-end: #FF0054; /* Gradient end color */
+}
+
+
+.header {
+    display: flex;
+    align-items: center; /* Vertically centers items */
+    justify-content: space-between; /* Pushes logo to left, nav to right */
+    padding: 0 4rem; /* Adjusted padding: removed top/bottom padding to let height control vertical spacing, increased side padding */
+    height: 7.2rem; /* Keeps the fixed height for the nav bar */
+
+    background-color: var(--color-secondary-dark); /* Deeper background for navbar */
+    border-bottom: 1px solid var(--color-border-subtle); /* Subtle separator line */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+/* Main Site Logo on Left */
+.main-icon {
+    height: 5.5rem; /* Increased height for prominence, adjust as needed (e.g., 6rem if your logo is more horizontal) */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the whole logo fits if aspect ratio is odd */
+    /* If your logo has a white background and you want it gone, you need a transparent PNG/WebP. */
+    /* CSS filters like 'mix-blend-mode' or more complex 'filter' chains can sometimes help, but are less reliable. */
+    transition: transform 0.3s ease;
+}
+
+.main-icon:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.nav-bar {
+    /* The nav-bar itself might not need many display properties if its parent (.header) handles flex */
+    /* But ensure it doesn't have conflicting margins/paddings */
+    margin-right: -0.8rem; /* Corrects for possible extra spacing from list item padding */
+}
+
+.nav-list {
+    display: flex; /* Makes the list items flex items */
+    align-items: center; /* Vertically centers list items */
+    justify-content: flex-end; /* Aligns items to the end (right) of the available space */
+    
+    padding: 0; /* Remove any default padding from ul */
+    margin: 0; /* Remove any default margin from ul */
+    
+    gap: 3.2rem; /* Consistent gap between navigation items */
+    font-size: 1.8rem; /* Adjusted font size for cleaner nav text */
+    font-family: 'Lato', sans-serif; /* Use Lato for clean navigation text */
+    font-weight: 400; /* Regular weight for subtle elegance */
+}
+
+.nav-list li{
+    list-style: none; /* Remove bullet points */
+}
+
+/* Specific styling for the last list item (YouTube button) */
+.nav-list li:last-child {
+    /* Removed padding-right/left here to let button's own padding control space */
+    padding: 0;
+}
+
+.links {
+    display: inline-block; /* Ensure links take up space for padding/hover */
+    text-decoration: none;
+    color: var(--color-text-dimmed); /* Softer text color */
+    padding: 0.8rem 1.2rem; /* Add some padding to clickable area of links */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.links:hover {
+    color: var(--color-accent-gold); /* Highlight on hover with accent color */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.yt-btn {
+    display: flex;
+    align-items: center; /* Vertically centers icon and text in button */
+    justify-content: center; /* Horizontally centers icon and text */
+    gap: 0.8rem; /* Increased gap between text and icon for clarity */
+    padding: 1rem 2rem; /* Adjusted padding for better button appearance */
+    font-size: 1.8rem; /* Font size matches nav links or slightly larger */
+
+    background-color: var(--color-button-bg-main); /* Vibrant orange button */
+    border: solid 0.1rem var(--color-button-bg-main); /* Match border to background */
+    color: var(--color-button-text-main); /* Dark text for contrast */
+    border-radius: 0.5rem; /* Slightly more rounded corners */
+    font-weight: 600; /* Bolder text for buttons */
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.yt-btn:hover {
+    background-color: var(--color-secondary-dark); /* Darker background on hover */
+    border-color: var(--color-accent-gold); /* Accent border on hover */
+    color: var(--color-accent-gold); /* Accent text on hover */
+    transform: translateY(-2px);
+}
+
+.yt-btn img {
+    height: 2.2rem; /* Adjusted YouTube icon size, adjust as needed */
+    width: auto;
+    /* This filter assumes your YouTube icon is a simple black/dark icon and needs to be white/light. */
+    /* If your YouTube icon is already light (e.g., white), remove this filter. */
+    filter: invert(1);
+    /* vertical-align: middle; Removed if using flexbox on parent, as align-items handles it */
+    transition: filter 0.3s ease;
+}
+
+.yt-btn:hover img {
+    /* This filter tries to shift a white icon to a hue close to the accent-gold. */
+    /* If your icon is an SVG, consider using `fill: var(--color-accent-gold);` instead. */
+    filter: brightness(1.5) sepia(1) saturate(7) hue-rotate(345deg); /* Adjusted filter for orange/gold hue on hover */
+}
+/*********************************************************************/
+/* HERO */
+/*********************************************************************/
+
+.hero{
+    padding-top: 16rem ;
+    text-align: center;
+    background-color: var(--color-primary-dark); /* Applied premium color */
+}
+
+.podcast-link{
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+    padding: 0.5rem 2rem;
+    border-radius: 250px;
+    color: var(--color-text-light); /* Applied premium color */
+    background-color: var(--color-secondary-dark); /* Applied premium color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Added transition */
+}
+
+.podcast-link:hover {
+    background-color: var(--color-accent-gold); /* Hover effect */
+    color: var(--color-primary-dark); /* Hover effect */
+}
+
+.chev-right{
+    height: 2.2rem;
+    transform: translate(0.3rem,0.5rem);
+    stroke: currentColor; /* Ensures icon color matches text */
+}
+
+.head-para{
+    text-align: center;
+}
+
+.hero-heading{
+    font-size: 7.6rem;
+    font-weight: 800;
+    margin-top: 1.6rem;
+    line-height: 1.3;
+    font-family: 'Playfair Display', serif; /* Applied premium font */
+    color: var(--color-text-light); /* Applied premium color */
+}
+
+.free-span{
+    /* Updated gradient to match new premium palette */
+    background: -webkit-linear-gradient(-360deg,var(--color-gradient-start),var(--color-gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-para{
+    margin-top: 3.2rem;
+    font-size: 2rem;
+    width: 57%;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.2px;
+    line-height: 2.9rem;
+    color: var(--color-text-dimmed); /* Applied premium color */
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+}
+.bold{
+    color: var(--color-text-light); /* Applied premium color */
+    font-weight: 600;
+}
+
+.header-buttons{
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+.courses-link{
+    font-size: 1.6rem;
+    background-color: var(--color-button-bg-main); /* Applied premium color */
+    padding: 1.4rem 3.2rem;
+    color: var(--color-button-text-main); /* Applied premium color */
+    border-radius: 0.4rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Added transition */
+}
+
+.courses-link:hover {
+    background-color: var(--color-secondary-dark); /* Hover effect */
+    color: var(--color-text-light); /* Hover effect */
+}
+
+.right-icon{
+    height: 2rem;
+    width: 2rem;
+    stroke: currentColor; /* Ensures icon color matches text */
+}
+
+.yt-link{
+    font-size: 1.6rem;
+    font-weight: 400;
+    background-color: transparent; /* Changed for premium look */
+    padding: 1.4rem 3.6rem;
+    color: var(--color-text-light); /* Applied premium color */
+    border: 1px solid var(--color-border-subtle); /* Applied premium color */
+    border-radius: 0.4rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Added transition */
+}
+
+.yt-link:hover {
+    background-color: var(--color-secondary-dark); /* Hover effect */
+    border-color: var(--color-accent-gold); /* Hover effect */
+    color: var(--color-accent-gold); /* Hover effect */
+}
+
+.top-right-icon{
+    height: 2rem;
+    width: 2.2rem;
+    stroke: currentColor; /* Ensures icon color matches text */
+}
+
+/*********************************************************************/
+/* MAIN-CONTENT */
+/*********************************************************************/
+
+.content-list{
+    color: var(--color-text-dimmed); /* Applied premium color */
+    padding: 1rem 3rem;
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+}
+.content-list > li {
+    margin-bottom: 2.2rem;
+}
+.content-list > li:last-child {
+    margin-bottom: 3.6rem;
+}
+
+.right-icon-about{
+    height: 2rem;
+    stroke: currentColor; /* Ensures icon color matches text */
+}
+
+/* 1. About us */
+.about-us{
+    margin-top: 15rem;
+    padding: 1.2rem 2.2rem ;
+    background-color: var(--color-secondary-dark); /* Applied premium color */
+    border-radius: 8px; /* Added subtle border-radius */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Added subtle shadow */
+}
+
+.about-head{
+    font-size: 3.6rem;
+    margin-bottom: 4rem;
+    transform: translate(1.6rem,1.2rem);
+    font-family: 'Playfair Display', serif; /* Applied premium font */
+    color: var(--color-text-light); /* Applied premium color */
+}
+
+.about-img{
+    padding: 2.4rem 4rem;
+    justify-self:center;
+    border-radius: 4px; /* Added subtle border-radius for images */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); /* More pronounced, but soft shadow */
+    object-fit: cover; /* Ensures images cover their area without distortion */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out; /* Smooth hover effect */
+}
+
+.about-img:hover,
+.podcast-img:hover { /* Added podcast-img to this hover for consistency */
+    transform: translateY(-5px) scale(1.01); /* Lift and slightly enlarge on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Darker, more spread shadow on hover */
+}
+
+.about-content{
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+    line-height: 1.45;
+    padding: 0rem 15%rem;
+    color: var(--color-text-dimmed); /* Applied premium color */
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+}
+
+.about-img-one{
+    grid-column: 1/2;
+}
+
+.about-content-one{
+    grid-column: 2/3;
+    justify-self: center ;
+    margin-right: 6.4rem;
+}
+
+
+/*2. COURSES */
+.second-head{
+    font-size: 3.6rem;
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+    font-family: 'Playfair Display', serif; /* Applied premium font */
+    color: var(--color-text-light); /* Applied premium color */
+}
+
+.about-img-two{
+    grid-column: 2/3;
+}
+
+.about-content-two{
+    grid-row: 1/2;
+    justify-self: self-end;
+    justify-self:center;
+}
+
+/* 3. EVENTS */
+/* .about-img-three and .about-content-one are repeated, assuming they should align with .about-us styling */
+
+/* 4. MENTORSHIP */
+.roadmap-link{
+    padding: 1.2rem 1rem;
+}
+
+/* OPEN SOURCE CAFE PODCAST */
+.container-fifth{
+    grid-column: 1/-1;
+    column-gap: 2.4rem;
+
+    background-color: var(--color-secondary-dark); /* Applied premium color */
+    margin: 15rem 4%;
+    padding: 10rem 4%;
+    border-radius: 8px; /* Added subtle border-radius */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Added more prominent shadow */
+
+}
+
+.container-article{
+    line-height: 1.45;
+}
+
+.container-head{
+    font-size: 3.6rem;
+    color: var(--color-text-light); /* Applied premium color */
+    font-weight: 800;
+    line-height: 1;
+    padding-bottom:5% ;
+    font-family: 'Playfair Display', serif; /* Applied premium font */
+}
+.container-para{
+    font-size: 2rem;
+    color: var(--color-text-dimmed); /* Applied premium color */
+    margin-bottom: 3.6rem;
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+}
+.container-btn{
+    color: var(--color-button-text-main); /* Applied premium color */
+    font-size: 1.8rem;
+    font-weight: 400;
+
+    padding: 1.6rem 7.8rem;
+    border-radius: 5rem;
+
+    text-decoration: none;
+    background-color: var(--color-accent-gold); /* Applied premium color */
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Added transition */
+}
+
+.container-btn:hover {
+    background-color: var(--color-primary-dark); /* Hover effect */
+    color: var(--color-text-light); /* Hover effect */
+}
+
+.podcast-img{
+    justify-self: right;
+    border-radius: 8px; /* Added subtle border-radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); /* Added subtle shadow */
+    object-fit: cover; /* Ensures images cover their area without distortion */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out; /* Smooth hover effect */
+}
+
+
+/* 6. BLOG */
+.blog{
+    margin-bottom: 15rem;
+}
+
+/* 7. Founder */
+.founder-para{
+    font-size: 1.8rem;
+    line-height: 1.5;
+
+    padding-bottom: 6%;
+    color: var(--color-text-dimmed); /* Applied premium color */
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+}
+.about-img-seven{
+    grid-column: 1/2;
+}
+
+.about-content-seven{
+    grid-column: 2/3;
+    justify-self: center ;
+    margin-right: 6.4rem;
+}
+
+.founder-head{
+    font-size: 3.6rem;
+    color: var(--color-text-light); /* Applied premium color */
+    margin-bottom: 5.5rem;
+    font-family: 'Playfair Display', serif; /* Applied premium font */
+}
+.founder-socials{
+    display: flex;
+    padding: 1rem;
+    gap:1.2rem
+}
+
+/*********************************************************************/
+/* FOOTER */
+/*******************/
+
+.grid-5-col{
+    display: grid;
+    grid-template-columns: 5;
+    grid-template-rows: 2;
+
+    padding: 10rem 0;
+}
+
+.logo-footer{
+    grid-column: 1/4;
+    padding: 0 8.5rem; /* Keep existing padding for layout */
+
+    /* --- ADD/ADJUST THESE LINES FOR SIZE CONTROL --- */
+    height: 30rem; /* Or a specific pixel value like 80px */
+    width: auto;  /* Ensures the logo scales proportionally */
+    /* You can also use max-width: 100%; to ensure it doesn't break containers on smaller screens */
+
+    /* Existing transition for hover effects */
+    transition: transform 0.3s ease; /* Ensure this is still here if you want hover effects */
+}
+
+.logo-footer:hover {
+    transform: scale(1.05); /* Keep hover effect for interactivity */
+}
+
+.footer-link{
+    text-decoration: none;
+    color: var(--color-text-dimmed); /* Applied premium color */
+    font-size: 2rem;
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+    transition: color 0.3s ease; /* Added transition */
+}
+
+.footer-link:hover {
+    color: var(--color-accent-gold); /* Hover effect */
+}
+
+.col-one{
+    font-size: 1.8rem;
+    list-style: none;
+    grid-column: 4/5;
+    justify-self: center;
+    line-height: 2.4;
+}
+
+.col-one-head{
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--color-text-light); /* Applied premium color */
+    padding-bottom: 1.4rem;
+
+    position: relative;
+    font-family: 'Playfair Display', serif; /* Applied premium font */
+}
+
+.col-two{
+    font-size: 1.8rem;
+    list-style: none;
+    grid-column: 5/6;
+    justify-self: right;
+    line-height: 2.4;
+}
+.col-two-head{ /* Added for consistency if this needs styling */
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--color-text-light); /* Applied premium color */
+    padding-bottom: 1.4rem;
+
+    position: relative;
+    font-family: 'Playfair Display', serif; /* Applied premium font */
+}
+
+.col-one-head::after{
+    content: '';
+    background-color: var(--color-accent-gold); /* Applied premium color */
+    width: 5rem;
+    height: 0.2rem; 
+    position: absolute;
+
+    top:40px;
+    left:0;
+}
+.cols-one{
+    margin-left: 8rem;
+}
+.cols-two{
+    margin-right: 8rem;
+}
+.copyright{
+    font-size: 1.8rem;
+    color: var(--color-text-dimmed); /* Applied premium color */
+    padding: 0 8.5rem;
+    font-family: 'Lato', sans-serif; /* Applied premium font */
+}
